@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Ifrah | 18th Birthday</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #fce4ec 0%, #ffebee 100%);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 12px 40px 0 rgba(255, 77, 109, 0.15);
+            z-index: 10;
+            max-width: 350px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 { color: #ff4d6d; font-size: 1.8rem; margin-bottom: 5px; }
+        .age { font-size: 6.5rem; color: #ff758f; font-weight: 900; line-height: 1; margin: 15px 0; text-shadow: 2px 2px 10px rgba(255, 117, 143, 0.3); }
+        p { color: #555; font-size: 1rem; line-height: 1.5; }
+        
+        .signature {
+            margin-top: 35px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            color: #ff4d6d;
+            font-size: 1.2rem;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff8fa3;
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Music Button */
+        #music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-weight: bold;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="birthdaySong" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+
+    <div class="glass-card">
+        <h1>Happy 18th Birthday, Ifrah! ❤️</h1>
+        <p>Today marks the start of your greatest chapter.</p>
+        <div class="age">18</div>
+        <p>I am so incredibly proud of you.<br>I'll be right by your side for all of it.</p>
+        <div class="signature">From your lover,<br>Saad</div>
+    </div>
+
+    <script>
+        // Heart Animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+        setInterval(createHeart, 300);
+
+        // Music Logic
+        const song = document.getElementById("birthdaySong");
+        const btn = document.getElementById("music-btn");
+
+        function toggleMusic() {
+            if (song.paused) {
+                song.play();
+                btn.innerHTML = "⏸ Pause Music";
+            } else {
+                song.pause();
+                btn.innerHTML = "🎵 Play Music";
+            }
+        }
+    </script>
+</body>
+</html>
